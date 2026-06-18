@@ -145,7 +145,7 @@ social-media-dashboard/
 
 ## GitHub Repository
 
-- **Repository URL**: `https://github.com/ruruchankawaii992-coder/social-media-dashboard-`
+- **Repository URL**: `https://github.com/ruruchankawaii992-coder/social-media-dashboard`
 - **Portfolio Integration**: Live at [https://ruruchankawaii992-coder.github.io/single-html-page/](https://ruruchankawaii992-coder.github.io/single-html-page/)
 
 ## Deployment
@@ -158,8 +158,8 @@ For production deployment to a VPS:
 
 ```bash
 # Clone the repository
-git clone https://github.com/ruruchankawaii992-coder/social-media-dashboard-.git
-cd social-media-dashboard-
+git clone https://github.com/ruruchankawaii992-coder/social-media-dashboard.git
+cd social-media-dashboard
 
 # Create production .env file
 cp .env.example .env
