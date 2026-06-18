@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./backend/.env
+    environment:
+      # Override DATABASE_URL from .env.example with our configured credentials
+      SMM_DATABASE_URL: postgres://smm_user:smm_pass@postgres:5432/smm_dashboard
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: smm_dashboard
+      POSTGRES_USER: smm_user
+      POSTGRES_PASSWORD: smm_pass
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smm_user -d smm_dashboard"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+volumes:
+  pgdata:
