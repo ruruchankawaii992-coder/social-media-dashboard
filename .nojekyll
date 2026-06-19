@@ -1,1 +1,4 @@
-# Disable Jekyll processing for GitHub Pages
+---
+# This file disables Jekyll processing on GitHub Pages.
+# Required for SPA routing with assets that start with _ or have special names.
+---
